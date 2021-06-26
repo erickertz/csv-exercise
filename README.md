@@ -42,6 +42,7 @@ You know what they say about assumptions
    `export SCOIR_ENVIRONMENT="LOCAL" && SCOIR_GCP_PROJECT_NAME="scoir" && SCOIR_GCP_INPUT_BUCKET_NAME="scoir-csv" && SCOIR_GCP_OUTPUT_BUCKET_NAME="scoir-json" && go run ./app/cmd/main.go`
 
 #### Terraform
+Terraform is saved in the following file structure: `/terraform/{provider}/{project/{service}/{region}/{resource}.tf`:
 
 #### Deploying
 ##### Manual Deploy Examples:

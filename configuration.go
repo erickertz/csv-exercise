@@ -20,7 +20,7 @@ type Common struct {
 
 // GCP is used for Google Cloud Project
 type GCP struct {
-	GcpProjectName      string `split_words:"true" required:"scoir"`
+	GcpProjectName      string `split_words:"true" required:"true"`
 	GcpInputBucketName  string `split_words:"true" required:"true"`
 	GcpOutputBucketName string `split_words:"true" required:"true"`
 }
