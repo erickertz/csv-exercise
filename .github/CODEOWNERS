@@ -1,0 +1,13 @@
+# These owners will be the default owners for everything in
+# the repo. Unless a later match takes precedence,
+# these owner(s) will be requested for
+# review when someone opens a pull request.
+*       @erickertz
+
+When someone opens a pull request that only
+# modifies files in the terraform directory in the root of this repo,
+# these owner(s) will be requested for a review.
+terraform/       @erickertz
+
+
+# Order is important; The last matching pattern has the most precedence.
