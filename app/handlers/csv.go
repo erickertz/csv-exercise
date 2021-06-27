@@ -3,6 +3,7 @@ package handlers
 import (
 	csvReader "encoding/csv"
 	"encoding/json"
+	"strconv"
 	"strings"
 
 	"github.com/erickertz/csv-exercise/app/models"
@@ -60,8 +61,14 @@ func (csv *CSV) parseObjectString(sourceObjectString string) ([]*models.JSONReco
 			csv.Logger.Warnf("invalid CSV record: %v", validateRecordErr)
 			continue
 		}
+		IDInt, IDIntErr := strconv.Atoi(record[0])
+		// All data should be validated at this point so error should never happen, but we shouldn't ignore either way
+		if nil != IDIntErr {
+			csv.Logger.Warnf("invalid CSV record ID: %v", IDIntErr)
+			continue
+		}
 		jsonRecord := models.JSONRecord{
-			ID: record[0],
+			ID: IDInt,
 			Name: models.JSONRecordName{
 				First:  record[1],
 				Middle: record[2],

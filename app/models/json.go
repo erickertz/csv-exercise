@@ -2,7 +2,7 @@ package models
 
 // JSONRecord is the record format of json output
 type JSONRecord struct {
-	ID    string         `json:"id"`
+	ID    int            `json:"id"`
 	Name  JSONRecordName `json:"name"`
 	Phone string         `json:"phone"`
 }

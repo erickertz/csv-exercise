@@ -26,6 +26,7 @@ You have golang 1.13 installed and or docker / docker-compose and know how to us
 - [Terraform](#terraform)
 - [Deploying](#deploying)
 - [Contribution Guide](#contribution-guide)
+- [Dev NOtes](#dev-notes)
 - [TODOs](#todos)
 
 #### Environment Variables
@@ -57,6 +58,9 @@ Terraform is saved in the following file structure: `/terraform/{provider}/{proj
 
 #### Contribution Guide
 Please see the contribution guide in the [./.github/CONTRIBUTING.md](./.github/CONTRIBUTING.md) file
+
+#### Dev Notes
+- There is no official GCP Cloud Storage emulator so we are kinda forced to use ones in an actual project for local development :( .
 
 #### TODOs
 - Use Cloud Build and Cloud Run. Cloud Functions are a great fit for this as a POC / Demo but have limitations that might not make this suitable for a production enviroment.
