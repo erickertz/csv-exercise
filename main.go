@@ -17,7 +17,7 @@ import (
 	"github.com/sirupsen/logrus"
 )
 
-// MainGCS prints a message when a file is changed in a Cloud Storage bucket.
+// Main recieves PubSub messages when a new file is uploaded in an input storage bucket, validates the file is a CSV, converts to JSON, and uploads to an output bucket.
 func Main(ctx context.Context, e models.GCSEvent) error {
 
 	// Set App Config

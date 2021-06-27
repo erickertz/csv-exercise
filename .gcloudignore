@@ -18,8 +18,12 @@
 
 app/cmd/main.go
 golangci.yaml
+docker-compose.yaml
+Dockerfile
 
 env
 terraform
+static
+sample_data
 
 #!include:.gitignore

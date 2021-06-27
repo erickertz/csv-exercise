@@ -44,7 +44,7 @@ https://github.com/erickertz/csv-exercise/blob/master/static/scoir.pdf
 #### Go Setup
 * This repository is making use of Go Modules, as such this repository should NOT be placed in your `GOPATH` or you should force `GO111MODULE=on`.
 
-#### How to Run Locally [https://github.com/GoogleCloudPlatform/functions-framework-go#features](https://github.com/GoogleCloudPlatform/functions-framework-go#features)
+#### How to Run Locally
 1. Bare Metal:
    `export SCOIR_ENVIRONMENT="LOCAL" && SCOIR_GCP_PROJECT_NAME="scoir" && SCOIR_GCP_INPUT_BUCKET_NAME="scoir-csv" && SCOIR_GCP_OUTPUT_BUCKET_NAME="scoir-json" && go run ./app/cmd/main.go`
 2. Docker:
@@ -58,15 +58,17 @@ Terraform is saved in the following file structure: `/terraform/{provider}/{proj
 ##### Manual Deploy Example:
 1. Install gcloud cli: [https://cloud.google.com/sdk/gcloud](https://cloud.google.com/sdk/gcloud)
 2. Set project: `gcloud config set project <project-id>` (scoir for dev)
-3. Deploy Main Processor:
-   * DEV: `gcloud functions deploy scoir-csv-to-json --max-instances 15 --memory 512MB --timeout 540 --entry-point Main --runtime go113 --trigger-bucket scoir-csv --region us-east1 --service-account scoir-318015@appspot.gserviceaccount.com --ingress-settings all --env-vars-file ./env/dev.yaml --set-build-env-vars VERSION=main.0`
+3. Deploy Function using gcloud cli:
+   * DEV: `gcloud functions deploy scoir-csv-to-json --max-instances 1 --memory 512MB --timeout 540 --entry-point Main --runtime go113 --trigger-bucket scoir-csv --region us-east1 --service-account scoir-318015@appspot.gserviceaccount.com --ingress-settings all --env-vars-file ./env/dev.yaml --set-build-env-vars VERSION=master.0`
 
 #### Contribution Guide
 Please see the contribution guide in the [./.github/CONTRIBUTING.md](./.github/CONTRIBUTING.md) file
 
 #### Dev Notes
 - There is no official GCP Cloud Storage emulator so we are kinda forced to use ones in an actual project for local development :( .
+- For Cloud Funcs / POC, keep max_instances to 1 to avoid unnecessary concurrent processing. See [TODOs](#todos) for long term proposal.
 
 #### TODOs
-- Use Cloud Build and Cloud Run. Cloud Functions are a great fit for this as a POC / Demo but have limitations that might not make this suitable for a production enviroment.
+- Use Cloud Build and Cloud Run. Cloud Functions are a great fit for this as a POC / Demo but have limitations that might not make this suitable for a production enviroment with large amounts of data to process.
+- Have contribution and testing checks at PR / build time
 - Write some unit tests there, cowboy

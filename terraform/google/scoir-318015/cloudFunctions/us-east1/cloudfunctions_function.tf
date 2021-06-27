@@ -26,11 +26,11 @@ resource "google_cloudfunctions_function" "tfer--us-002D-east1_scoir-002D-csv-00
     deployment-tool = "cli-gcloud"
   }
 
-  max_instances         = "15"
+  max_instances         = "1"
   name                  = "scoir-csv-to-json"
   project               = "scoir-318015"
   region                = "us-east1"
   runtime               = "go113"
-  service_account_email = "scior-cf@scoir-318015.iam.gserviceaccount.com"
+  service_account_email = "scoir-318015@appspot.gserviceaccount.com"
   timeout               = "540"
 }
