@@ -12,10 +12,12 @@ type Configuration struct {
 
 //Common contains fields for the common application configuration.
 type Common struct {
-	AppName     string `split_words:"true" default:"scoircsvjson"`
-	Environment string `split_words:"true" required:"true"`
-	LogLevel    string `split_words:"true" default:"info"`
-	TestCSVName string `split_words:"true" default:"test.csv"`
+	AppName         string `split_words:"true" default:"scoircsvjson"`
+	Environment     string `split_words:"true" required:"true"`
+	LogLevel        string `split_words:"true" default:"info"`
+	TestCSVName     string `split_words:"true" default:"test.csv"`
+	MinCSVRecordLen int    `split_words:"true" default:"6"`
+	SkipCSVHeader   bool   `split_words:"true" default:"true"`
 }
 
 // GCP is used for Google Cloud Project

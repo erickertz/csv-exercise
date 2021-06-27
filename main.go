@@ -51,17 +51,13 @@ func Main(ctx context.Context, e models.GCSEvent) error {
 
 	// Set Cloud Storage Service
 	cloudStorageService := services.CloudStorage{
-		CloudStorageClient:    cloudStorageClient,
-		SourceBucketName:      processedConfiguration.GCP.GcpInputBucketName,
-		DestinationBucketName: processedConfiguration.GCP.GcpOutputBucketName,
+		CloudStorageClient: cloudStorageClient,
 	}
-
-	processingStartTime := time.Now()
-	logger.Infof("begin processing %v file starting at: %v", e.Name, processingStartTime)
 
 	// Set CSV Validator
 	csvValidator := validators.CSV{
-		Logger: logger,
+		Logger:       logger,
+		MinRecordLen: processedConfiguration.MinCSVRecordLen,
 	}
 
 	// Set CSV Handler
@@ -69,12 +65,7 @@ func Main(ctx context.Context, e models.GCSEvent) error {
 		Logger:              logger,
 		Validator:           &csvValidator,
 		CloudStorageService: &cloudStorageService,
-	}
-
-	// Handle CSV Records
-	jsonRecords, csvHandlerErr := csvHandler.Handle(e.Name)
-	if nil != csvHandlerErr {
-		logger.Fatalf("error handiling CSV file: %v", csvHandlerErr)
+		SkipCSVHeader:       processedConfiguration.SkipCSVHeader,
 	}
 
 	// Set JSON Handler
@@ -82,8 +73,19 @@ func Main(ctx context.Context, e models.GCSEvent) error {
 		CloudStorageService: &cloudStorageService,
 	}
 
+	processingStartTime := time.Now()
+	logger.Infof("begin processing %v file starting at: %v", e.Name, processingStartTime)
+
 	// Handle CSV Records
-	jsonHandlerErr := jsonHandler.Handle(jsonRecords)
+	jsonRecords, csvHandlerErr := csvHandler.Handle(processedConfiguration.GCP.GcpInputBucketName, e.Name)
+	if nil != csvHandlerErr {
+		logger.Fatalf("error handiling CSV file: %v", csvHandlerErr)
+	}
+
+	logger.Debugf("processing file: %v with records: %v", e.Name, jsonRecords)
+
+	// Handle JSON Records
+	jsonHandlerErr := jsonHandler.Handle(processedConfiguration.GCP.GcpOutputBucketName, e.Name, jsonRecords)
 	if nil != jsonHandlerErr {
 		logger.Fatalf("error handiling JSON file: %v", jsonHandlerErr)
 	}
