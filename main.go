@@ -34,14 +34,18 @@ func Main(ctx context.Context, e models.GCSEvent) error {
 	formatter := &logrus.JSONFormatter{
 		FieldMap: logrus.FieldMap{
 			logrus.FieldKeyLevel: "severity",
+			logrus.FieldKeyFile:  "sourceLocation.file",
+			logrus.FieldKeyFunc:  "sourceLocation.function",
 		},
 	}
 	logrus.SetFormatter(formatter)
 	logrus.SetLevel(level)
+	logrus.SetReportCaller(true)
 	logger := logrus.WithFields(
 		logrus.Fields{
 			"service":     processedConfiguration.Common.AppName,
 			"environment": processedConfiguration.Common.Environment,
+			"input_file":  e.Name,
 		},
 	)
 
