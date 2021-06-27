@@ -19,6 +19,11 @@ You have golang 1.13 installed and or docker / docker-compose and know how to us
 
 ## How To
 
+[![architecture](https://github.com/erickertz/csv-exercise/blob/master/static/diagram.png)](https://github.com/erickertz/csv-exercise/blob/master/static/scoir.pdf)
+
+### Architecture
+https://github.com/erickertz/csv-exercise/blob/master/static/scoir.pdf
+
 ### Table of Contents
 - [Environment Variables](#environment-variables)
 - [Go Setup](#go-setup)
@@ -26,7 +31,7 @@ You have golang 1.13 installed and or docker / docker-compose and know how to us
 - [Terraform](#terraform)
 - [Deploying](#deploying)
 - [Contribution Guide](#contribution-guide)
-- [Dev NOtes](#dev-notes)
+- [Dev Notes](#dev-notes)
 - [TODOs](#todos)
 
 #### Environment Variables
