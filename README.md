@@ -15,7 +15,7 @@ This repo contains an exercise intended for engineers.
 
 ## Assumptions
 
-You know what they say about assumptions
+You have golang 1.13 installed and or docker / docker-compose and know how to use them.
 
 ## How To
 
@@ -26,6 +26,7 @@ You know what they say about assumptions
 - [Terraform](#terraform)
 - [Deploying](#deploying)
 - [Contribution Guide](#contribution-guide)
+- [TODOs](#todos)
 
 #### Environment Variables
 - `SCOIR_APP_NAME` (Default: `"scoircsvjson"`)
@@ -40,12 +41,15 @@ You know what they say about assumptions
 #### How to Run Locally [https://github.com/GoogleCloudPlatform/functions-framework-go#features](https://github.com/GoogleCloudPlatform/functions-framework-go#features)
 1. Bare Metal:
    `export SCOIR_ENVIRONMENT="LOCAL" && SCOIR_GCP_PROJECT_NAME="scoir" && SCOIR_GCP_INPUT_BUCKET_NAME="scoir-csv" && SCOIR_GCP_OUTPUT_BUCKET_NAME="scoir-json" && go run ./app/cmd/main.go`
+2. Docker:
+   1. Set your service account creds as JSON in docker-compose, ex: `SCOIR_GCP_APPLICATION_CREDENTIALS: '{"type": "service_account"}'`
+   2. Run docker compose: `docker-compose up --build`
 
 #### Terraform
 Terraform is saved in the following file structure: `/terraform/{provider}/{project/{service}/{region}/{resource}.tf`:
 
 #### Deploying
-##### Manual Deploy Examples:
+##### Manual Deploy Example:
 1. Install gcloud cli: [https://cloud.google.com/sdk/gcloud](https://cloud.google.com/sdk/gcloud)
 2. Set project: `gcloud config set project <project-id>` (scoir for dev)
 3. Deploy Main Processor:
@@ -53,3 +57,7 @@ Terraform is saved in the following file structure: `/terraform/{provider}/{proj
 
 #### Contribution Guide
 Please see the contribution guide in the [./.github/CONTRIBUTING.md](./.github/CONTRIBUTING.md) file
+
+#### TODOs
+- Use Cloud Build and Cloud Run. Cloud Functions are a great fit for this as a POC / Demo but have limitations that might not make this suitable for a production enviroment.
+- Write some unit tests there, cowboy

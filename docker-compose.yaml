@@ -1,0 +1,16 @@
+version: '3.3'
+services:
+  scoircsvjson:
+    container_name: 'scoircsvjson'
+    build:
+      context: .
+      dockerfile: './Dockerfile'
+    environment:
+      SCOIR_LOG_LEVEL: "DEBUG"
+      SCOIR_APP_NAME: "scoircsvjson"
+      SCOIR_ENVIRONMENT: "local"
+      SCOIR_GCP_PROJECT_NAME: "scoir"
+      SCOIR_GCP_INPUT_BUCKET_NAME: "scoir-csv"
+      SCOIR_GCP_OUTPUT_BUCKET_NAME: "scoir-json"
+      # SCOIR_GCP_APPLICATION_CREDENTIALS: '{"type": "service_account"}'`
+    restart: 'on-failure'

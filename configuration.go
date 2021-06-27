@@ -22,9 +22,10 @@ type Common struct {
 
 // GCP is used for Google Cloud Project
 type GCP struct {
-	GcpProjectName      string `split_words:"true" required:"true"`
-	GcpInputBucketName  string `split_words:"true" required:"true"`
-	GcpOutputBucketName string `split_words:"true" required:"true"`
+	GcpApplicationCredentials string `split_words:"true" required:"false"`
+	GcpProjectName            string `split_words:"true" required:"true"`
+	GcpInputBucketName        string `split_words:"true" required:"true"`
+	GcpOutputBucketName       string `split_words:"true" required:"true"`
 }
 
 //GetProcessedConfiguration returns the processed fields for the application configuration.

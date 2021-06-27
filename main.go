@@ -5,6 +5,8 @@ import (
 	"context"
 	"time"
 
+	"google.golang.org/api/option"
+
 	"github.com/erickertz/csv-exercise/app/validators"
 
 	"github.com/erickertz/csv-exercise/app/handlers"
@@ -44,7 +46,14 @@ func Main(ctx context.Context, e models.GCSEvent) error {
 	)
 
 	// Set Cloud Storage Client
-	cloudStorageClient, cloudStorageClientErr := storage.NewClient(context.Background())
+	var cloudStorageClient *storage.Client
+	var cloudStorageClientErr error
+	if processedConfiguration.GCP.GcpApplicationCredentials != "" {
+		clientOption := option.WithCredentialsJSON([]byte(processedConfiguration.GCP.GcpApplicationCredentials))
+		cloudStorageClient, cloudStorageClientErr = storage.NewClient(context.Background(), clientOption)
+	} else {
+		cloudStorageClient, cloudStorageClientErr = storage.NewClient(context.Background())
+	}
 	if cloudStorageClientErr != nil {
 		logger.Fatalf("Failed to create cloud storage client: %v", cloudStorageClientErr)
 	}
