@@ -2,7 +2,7 @@ package models
 
 import "time"
 
-// GCSEvent is the payload of a GCS event.
+// GCSEvent is the payload of a GCS event
 type GCSEvent struct {
 	Kind                    string                 `json:"kind"`
 	ID                      string                 `json:"id"`

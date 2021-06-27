@@ -12,8 +12,6 @@ import (
 
 func main() {
 
-	context := context.Background()
-
 	processedConfiguration, processedConfigurationErr := scoircsvjson.GetProcessedConfiguration()
 	if nil != processedConfigurationErr {
 		logrus.Fatalf("error getting proccessed configuration: %v", processedConfigurationErr)
@@ -53,7 +51,7 @@ func main() {
 		ResourceState: "",
 	}
 
-	err := scoircsvjson.Main(context, GCSEvent)
+	err := scoircsvjson.Main(context.Background(), GCSEvent)
 	if nil != err {
 		logrus.Fatalf("error processing GCSEvent: %v", err)
 	}
