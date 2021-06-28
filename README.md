@@ -72,3 +72,4 @@ Please see the contribution guide in the [./.github/CONTRIBUTING.md](./.github/C
 - Use Cloud Build and Cloud Run. Cloud Functions are a great fit for this as a POC / Demo but have limitations that might not make this suitable for a production enviroment with large amounts of data to process.
 - Have contribution and testing checks at PR / build time
 - Write some unit tests there, cowboy
+- Chunk up file and use multiple goroutines for faster input file processing
