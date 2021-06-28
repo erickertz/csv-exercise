@@ -10,6 +10,7 @@ import (
 	"golang.org/x/net/context"
 )
 
+// main is only used for local development. It will take a test csv and simulate processing through a GCP bucket trigger.
 func main() {
 
 	processedConfiguration, processedConfigurationErr := scoircsvjson.GetProcessedConfiguration()
