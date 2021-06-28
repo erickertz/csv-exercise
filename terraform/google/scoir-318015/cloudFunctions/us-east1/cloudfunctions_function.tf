@@ -2,13 +2,7 @@ resource "google_cloudfunctions_function" "tfer--us-002D-east1_scoir-002D-csv-00
   available_memory_mb = "512"
   entry_point         = "Main"
 
-  environment_variables = {
-    SCOIR_APP_NAME               = "scoir"
-    SCOIR_ENVIRONMENT            = "DEV"
-    SCOIR_GCP_INPUT_BUCKET_NAME  = "scoir-csv"
-    SCOIR_GCP_OUTPUT_BUCKET_NAME = "scoir-json"
-    SCOIR_GCP_PROJECT_NAME       = "scoir"
-  }
+  environment_variables = yamldecode(file("../../../../../env/dev.yaml"))
 
   event_trigger {
     event_type = "google.storage.object.finalize"

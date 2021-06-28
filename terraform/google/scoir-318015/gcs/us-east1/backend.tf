@@ -1,6 +1,6 @@
 terraform {
   backend "gcs" {
-    bucket = "terraform"
+    bucket = "scior-terraform"
     prefix = "scoir-gcs.tfstate"
   }
 }
