@@ -19,7 +19,7 @@ You have golang 1.13 installed and or docker / docker-compose and know how to us
 
 ## How To
 
-[![architecture](https://github.com/erickertz/csv-exercise/blob/master/static/diagram.png)](https://github.com/erickertz/csv-exercise/blob/master/static/scoir.pdf)
+[![architecture](https://github.com/erickertz/csv-exercise/blob/master/static/scoir.png)](https://github.com/erickertz/csv-exercise/blob/master/static/diagram.pdf)
 
 ### Architecture
 https://github.com/erickertz/csv-exercise/blob/master/static/scoir.pdf
